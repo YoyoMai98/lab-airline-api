@@ -21,9 +21,9 @@ public class DataLoader implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
 
-        Flight flight1 = new Flight("Hong Kong", 600, "2022.9.28", "15:30");
-        Flight flight2 = new Flight("Tuscany", 500, "2022.10.1", "09:20");
-        Flight flight3 = new Flight("Seattle", 550, "2022.12.13", "12:30");
+        Flight flight1 = new Flight("Hong Kong", 3, "2022.9.28", "15:30");
+        Flight flight2 = new Flight("Tuscany", 2, "2022.10.1", "09:20");
+        Flight flight3 = new Flight("Seattle", 2, "2022.12.13", "12:30");
 
         flightRepository.save(flight1);
         flightRepository.save(flight2);
