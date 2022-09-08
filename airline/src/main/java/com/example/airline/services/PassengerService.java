@@ -20,4 +20,8 @@ public class PassengerService {
     public Passenger addNewPassenger(Passenger passenger) {
         return passengerRepository.save(passenger);
     }
+
+    public Passenger getPassengerById(Long id) {
+        return passengerRepository.findById(id).get();
+    }
 }

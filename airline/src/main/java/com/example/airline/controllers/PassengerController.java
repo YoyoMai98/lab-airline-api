@@ -22,6 +22,12 @@ public class PassengerController {
         return new ResponseEntity<>(passengers, HttpStatus.OK);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Passenger> getPassengerById(@PathVariable Long id){
+        Passenger passenger = passengerService.getPassengerById(id);
+        return new ResponseEntity<>(passenger, HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity<Passenger> addNewPassenger(@RequestBody Passenger passenger){
         Passenger savedPassenger = passengerService.addNewPassenger(passenger);
