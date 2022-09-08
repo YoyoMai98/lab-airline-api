@@ -39,4 +39,11 @@ public class FlightController {
         Flight flight = flightService.addPassengerToFlight(id, passengerId);
         return new ResponseEntity<>(flight, HttpStatus.OK);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity cancelFlightById(@PathVariable long id){
+        flightService.cancelFlightById(id);
+        return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+    }
+
 }

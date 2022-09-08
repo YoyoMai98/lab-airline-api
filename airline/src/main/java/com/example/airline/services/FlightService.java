@@ -41,4 +41,8 @@ public class FlightService {
         return flight;
     }
 
+    public void cancelFlightById(long id) {
+        Flight flight = flightRepository.findById(id).get();
+        flightRepository.delete(flight);
+    }
 }
