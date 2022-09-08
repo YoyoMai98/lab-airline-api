@@ -22,7 +22,13 @@ public class FlightController {
         return new ResponseEntity<>(flights, HttpStatus.OK);
     }
 
-    @PatchMapping
+    @GetMapping("/{id}")
+    public ResponseEntity<Flight> getFlightById(@PathVariable Long id){
+        Flight flight = flightService.getFlightById(id);
+        return new ResponseEntity<>(flight, HttpStatus.OK);
+    }
+
+    @PostMapping
     public ResponseEntity<Flight> addNewFlight(@RequestBody Flight flight){
          Flight savedFlight = flightService.addNewFlight(flight);
          return new ResponseEntity<>(savedFlight, HttpStatus.CREATED);
