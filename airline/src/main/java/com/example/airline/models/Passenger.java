@@ -1,5 +1,7 @@
 package com.example.airline.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +25,7 @@ public class Passenger {
             joinColumns = {@JoinColumn(name = "passenger_id", nullable = false)},
             inverseJoinColumns = {@JoinColumn(name = "flight_id", nullable = false)}
     )
+    @JsonIgnoreProperties({"passengers"})
     private List<Flight> flights;
 
     public Passenger(String name, String phoneNumber) {
