@@ -17,4 +17,7 @@ public class PassengerService {
         return passengerRepository.findAll();
     }
 
+    public Passenger addNewPassenger(Passenger passenger) {
+        return passengerRepository.save(passenger);
+    }
 }

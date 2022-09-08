@@ -5,9 +5,7 @@ import com.example.airline.services.PassengerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,5 +20,11 @@ public class PassengerController {
     public ResponseEntity<List<Passenger>> getAllPassengers(){
         List<Passenger> passengers = passengerService.getAllPassengers();
         return new ResponseEntity<>(passengers, HttpStatus.OK);
+    }
+
+    @PostMapping
+    public ResponseEntity<Passenger> addNewPassenger(@RequestBody Passenger passenger){
+        Passenger savedPassenger = passengerService.addNewPassenger(passenger);
+        return new ResponseEntity<>(savedPassenger, HttpStatus.CREATED);
     }
 }
