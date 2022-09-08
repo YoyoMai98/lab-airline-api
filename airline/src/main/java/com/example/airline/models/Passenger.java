@@ -1,6 +1,7 @@
 package com.example.airline.models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name = "passengers")
@@ -27,6 +28,7 @@ public class Passenger {
     public Passenger(String name, String phoneNumber) {
         this.name = name;
         this.phoneNumber = phoneNumber;
+        this.flights = new ArrayList<>();
     }
 
     public Passenger() {
