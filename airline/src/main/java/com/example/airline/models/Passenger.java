@@ -1,6 +1,7 @@
 package com.example.airline.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity(name = "passengers")
 public class Passenger {
@@ -14,6 +15,14 @@ public class Passenger {
 
     @Column(name = "phone_number")
     private String phoneNumber;
+
+    @ManyToMany
+    @JoinTable(
+            name = "flights_passengers",
+            joinColumns = {@JoinColumn(name = "passenger_id", nullable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "flight_id", nullable = false)}
+    )
+    private List<Flight> flights;
 
     public Passenger(String name, String phoneNumber) {
         this.name = name;
