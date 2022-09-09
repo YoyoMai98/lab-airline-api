@@ -9,6 +9,11 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
+import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.Date;
+
 @Component
 public class DataLoader implements ApplicationRunner {
 
@@ -21,9 +26,16 @@ public class DataLoader implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
 
-        Flight flight1 = new Flight("Hong Kong", 3, "2022.9.28", "15:30");
-        Flight flight2 = new Flight("Tuscany", 2, "2022.10.1", "09:20");
-        Flight flight3 = new Flight("Seattle", 2, "2022.12.13", "12:30");
+        LocalDate date1 = LocalDate.of(2022,10,1);
+        LocalDate date2 = LocalDate.of(2022,9,28);
+        LocalDate date3 = LocalDate.of(2022, 12,13);
+        LocalTime time1 = LocalTime.of(15,30);
+        LocalTime time2 = LocalTime.of(9,20);
+        LocalTime time3 = LocalTime.of(12,30);
+
+        Flight flight1 = new Flight("Hong Kong", 3, date1, time1);
+        Flight flight2 = new Flight("Tuscany", 2, date2, time2);
+        Flight flight3 = new Flight("Seattle", 2, date3, time3);
 
         flightRepository.save(flight1);
         flightRepository.save(flight2);
