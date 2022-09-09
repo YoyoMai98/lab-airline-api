@@ -22,7 +22,7 @@ public class FlightController {
         List<Flight> flights;
         if(destination.isPresent()){
             flights = flightService.getAllGamesByDestination(destination.get());
-            if(!flights.isEmpty()){
+            if(flights.isEmpty()){
                 return new ResponseEntity<>(flights, HttpStatus.OK);
             }else{
                 return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
@@ -34,8 +34,13 @@ public class FlightController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Flight> getFlightById(@PathVariable Long id){
-        Flight flight = flightService.getFlightById(id);
-        return new ResponseEntity<>(flight, HttpStatus.OK);
+        Optional<Flight> flight = flightService.getFlightById(id);
+        if(flight.isPresent()){
+            return new ResponseEntity<>(flight.get(), HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+
     }
 
     @PostMapping

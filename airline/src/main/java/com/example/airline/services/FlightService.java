@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class FlightService {
@@ -27,8 +28,8 @@ public class FlightService {
         return flightRepository.findAll();
     }
 
-    public Flight getFlightById(Long id) {
-        return flightRepository.findById(id).get();
+    public Optional<Flight> getFlightById(Long id) {
+        return flightRepository.findById(id);
     }
 
     public Flight addPassengerToFlight(Long flightId, Long passengerId){
