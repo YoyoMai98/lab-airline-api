@@ -22,9 +22,13 @@ public class FlightController {
         List<Flight> flights;
         if(destination.isPresent()){
             flights = flightService.getAllGamesByDestination(destination.get());
-        }else{
-            flights = flightService.getAllFlights();
+            if(!flights.isEmpty()){
+                return new ResponseEntity<>(flights, HttpStatus.OK);
+            }else{
+                return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+            }
         }
+        flights = flightService.getAllFlights();
         return new ResponseEntity<>(flights, HttpStatus.OK);
     }
 
