@@ -45,4 +45,8 @@ public class FlightService {
         Flight flight = flightRepository.findById(id).get();
         flightRepository.delete(flight);
     }
+
+    public List<Flight> getAllGamesByDestination(String destination){
+        return flightRepository.findByDestination(destination);
+    }
 }

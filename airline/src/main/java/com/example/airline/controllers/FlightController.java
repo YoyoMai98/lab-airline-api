@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/flights")
@@ -17,8 +18,13 @@ public class FlightController {
     FlightService flightService;
 
     @GetMapping
-    public ResponseEntity<List<Flight>> getAllFights(){
-        List<Flight> flights = flightService.getAllFlights();
+    public ResponseEntity<List<Flight>> getAllFights(@RequestParam Optional<String> destination){
+        List<Flight> flights;
+        if(destination.isPresent()){
+            flights = flightService.getAllGamesByDestination(destination.get());
+        }else{
+            flights = flightService.getAllFlights();
+        }
         return new ResponseEntity<>(flights, HttpStatus.OK);
     }
 
