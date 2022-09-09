@@ -35,9 +35,11 @@ public class FlightService {
         Flight flight = flightRepository.findById(flightId).get();
         Passenger passenger = passengerRepository.findById(passengerId).get();
         List<Passenger> passengers = flight.getPassengers();
-        passengers.add(passenger);
-        flight.setPassengers(passengers);
-        flightRepository.save(flight);
+        if(passengers.size() < flight.getCapacity()){
+            passengers.add(passenger);
+            flight.setPassengers(passengers);
+            flightRepository.save(flight);
+        }
         return flight;
     }
 
